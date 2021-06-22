@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import List from "./components/tweet/List"
+import TweetView from "./components/tweet/TweetView"
+import { Router, Link, RouteComponentProps } from "@reach/router"
+
+
 import './App.css';
 
-function App() {
+function App(props: RouteComponentProps) {
   return (
-    <div className="App">
+    <div className="app">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+         <h1>Universe Twitter</h1>
+         <List url="posts"/>
       </header>
     </div>
   );
 }
 
-export default App;
+function MyApp(){
+  return(
+  <Router>
+    <App path="/"/>
+    <TweetView path="tweet/:tweetId"/>
+    <List path="/list/u/:userId"/>
+  </Router>
+  )
+}
+
+export default MyApp;
